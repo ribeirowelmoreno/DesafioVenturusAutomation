@@ -1,17 +1,13 @@
 package tests;
 
-import android.app.Activity;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.uiautomator.UiDevice;
-import com.example.favoritemovies.screens.main.MainActivity;
 import com.example.favoritemovies.screens.sign.SignActivity;
-import kotlin.jvm.JvmField;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import pages.MainPage;
 
-public class TestLogin {
+public class  TestLogin {
     private UiDevice mDevice;
 
 
@@ -29,8 +25,35 @@ public class TestLogin {
                 .EmailConfirmation("ribeirowelmoreno@gmail.com")
                 .InsertPassword("Wel421563@")
                 .ConfirmPassword("Wel421563@")
+                .PressConfirmButton();
+    }
+
+    @Test
+    public void testCheckIfLoginButtonIsCheckable(){
+        new MainPage(mDevice)
+                .ClickInRegisterButton()
+                .InsertFullName("Wellynton Ribeiro Moreno")
+                .InsertCpfNumber("39272644828")
+                .InsertEmail("ribeirowelmoreno@gmail.com")
+                .EmailConfirmation("ribeirowelmoreno@gmail.com")
+                .InsertPassword("Wel421563@")
+                .ConfirmPassword("Wel421563@")
                 .PressConfirmButton()
                 .InsertEmail("ribeirowelmoreno@gmail.com")
-                .InsertPassword("Wel421563@");
+                .InsertPassword("ribeirowelmoreno@gmail.com")
+                .CheckIfLoginButtonIsCheckable()
+                .PressEntrarButton();
+
+    }
+
+    @Test
+    public void testWatchTrailerMovie(){
+        new MainPage(mDevice)
+                .InsertEmail("ribeirowelmoreno@gmail.com")
+                .InsertPassword("Wel421563@")
+                .PressEntrarButton()
+                .ClickInWatchTrailer();
+
+
     }
 }

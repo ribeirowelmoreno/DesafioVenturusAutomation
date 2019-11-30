@@ -8,8 +8,7 @@ import io.reactivex.internal.operators.parallel.ParallelDoOnNextTry;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.*;
 
 public class MainPage {
     private UiDevice mDevice;
@@ -51,6 +50,22 @@ public class MainPage {
 
 
         return new MainPage(mDevice);
+    }
+
+    public MoviesPage PressEntrarButton(){
+        onView(withId(R.id.sign_in_login_btn))
+                .check(matches(withId(R.id.sign_in_login_btn)))
+                .perform(click());
+
+        return new MoviesPage(mDevice);
+    }
+
+    public MainPage CheckIfLoginButtonIsCheckable(){
+        onView(withId(R.id.sign_in_login_btn))
+                .check(matches(withId(R.id.sign_in_login_btn)))
+                .perform((ViewAction) isChecked());
+
+        return this;
     }
 
 }
